@@ -825,7 +825,7 @@ private getGroupName(id) {
     else if (id == '0622fac4-1d46-4418-bc41-97499cf769f6') {return 'Front yard'}
     else if (id == '01a119ac-8025-4af0-861e-fec50531da92') {return 'Utility'}
     else if (id == '0f312ce9-b19d-4ef6-b494-f57f6c3b17cc') {return 'Kitchen'}
-    else if (id == '10b255fd-96db-4eed-8628-22a2ece54cdd') {return 'Sasha\'s room'}
+    else if (id == '10b255fd-96db-4eed-8628-22a2ece54cdd') {return 'Sashas room'}
     else if (id == '273e9da5-4003-44e5-803b-581e4b83c2e0') {return 'Entry'}
     else if (id == '6c4ac217-57b2-44eb-b280-0a2bd3ecaf58') {return 'Office'}
     else if (id == '822de726-b228-4497-b9e6-61e60e16e79d') {return 'Back yard'}
