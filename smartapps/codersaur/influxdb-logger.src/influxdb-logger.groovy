@@ -111,7 +111,7 @@ preferences {
     }
 
     section ("InfluxDB Database:") {
-        input "prefDatabaseHost", "text", title: "Host", defaultValue: "54.152.83.186", required: true
+        input "prefDatabaseHost", "text", title: "Host", defaultValue: "192.168.1.236", required: true
         input "prefDatabasePort", "text", title: "Port", defaultValue: "8086", required: true
         input "prefDatabaseName", "text", title: "Database Name", defaultValue: "mechhome", required: true
     }
@@ -753,7 +753,7 @@ def postToInfluxDB(data) {
             headers: state.headers,
         )
         //log.debug hubAction
-        sendHubCommand(hubAction)
+        //sendHubCommand(hubAction)
     }
     catch (Exception e) {
         log.debug "Exception $e on $hubAction"
@@ -761,18 +761,18 @@ def postToInfluxDB(data) {
 
     // For reference, code that could be used for WAN hosts:
     // This has the advantage of exposing the response.
-    // def url = "http://${state.databaseHost}:${state.databasePort}/write?db=${state.databaseName}" 
-    //    try {
-    //      httpPost(url, data) { response ->
-    //          if (response.status != 999 ) {
-    //              log.debug "Response Status: ${response.status}"
-    //              log.debug "Response data: ${response.data}"
-    //              log.debug "Response contentType: ${response.contentType}"
-    //            }
-    //      }
-    //  } catch (e) {
-    //      log.debug "Something went wrong when posting: $e"
-    //  }
+     def url = "http://${state.databaseHost}:${state.databasePort}/write?db=${state.databaseName}" 
+        try {
+          httpPost(url, data) { response ->
+              if (response.status != 999 ) {
+                  log.debug "Response Status: ${response.status}"
+                  log.debug "Response data: ${response.data}"
+                  log.debug "Response contentType: ${response.contentType}"
+                }
+          }
+      } catch (e) {
+          log.debug "Something went wrong when posting: $e"
+      }
 }
 
 
@@ -798,7 +798,7 @@ private escapeStringForInfluxDB(str) {
         str = str.replaceAll(",", "\\\\,") // Escape commas.
         str = str.replaceAll("=", "\\\\=") // Escape equal signs.
         str = str.replaceAll("\"", "\\\\\"") // Escape double quotes.
-        //str = str.replaceAll("'", "_")  // Replace apostrophes with underscores.
+        str = str.replaceAll("'", "_")  // Replace apostrophes with underscores.
     }
     else {
         str = 'null'
@@ -830,6 +830,7 @@ private getGroupName(id) {
     else if (id == '6c4ac217-57b2-44eb-b280-0a2bd3ecaf58') {return 'Office'}
     else if (id == '822de726-b228-4497-b9e6-61e60e16e79d') {return 'Back yard'}
     else if (id == '83026ed6-8633-44ba-9150-ac412f3ef868') {return 'Master'}
+    else if (id == 'eefddb6d-1a49-4a66-a2f6-5a38a103eb5e') {return 'Master bathroom'}
     else if (id == '8bd5b2df-8f34-4e56-90e5-a34d163ebc45') {return 'Study'}
     else if (id == 'cbb4faac-e396-4564-8e82-8063f11bd8d4') {return 'Upstairs hall'}
     else if (id == 'ce2b4a4d-38ed-4cab-9360-0ad616ded6e7') {return 'Laundry room'}
